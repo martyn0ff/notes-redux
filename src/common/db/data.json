@@ -1,0 +1,34 @@
+{
+  "notes": [
+    {
+      "id": "ac72",
+      "content": "Resistance is persistence",
+      "isImportant": true
+    },
+    {
+      "id": "0fa4",
+      "content": "Don't forget to buy food",
+      "isImportant": true
+    },
+    {
+      "id": "9381",
+      "content": "Lorem ipsum dolor sit amet",
+      "isImportant": false
+    },
+    {
+      "id": "ec6d",
+      "content": "Education is the light",
+      "isImportant": false
+    },
+    {
+      "id": "abbb",
+      "content": "Some other random note, I ran out of ideas",
+      "isImportant": true
+    },
+    {
+      "id": "9a59",
+      "content": "Delete me! :)",
+      "isImportant": false
+    }
+  ]
+}

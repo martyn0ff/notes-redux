@@ -1,14 +1,8 @@
-let id = 0;
-
-function nextId() {
-  return id++;
-}
-
 Note.fromObject = function (object) {
-  return Note(object.content, object.isImportant || false);
+  return Note(object.content, object.isImportant || false, object.id);
 };
 
-function Note(content, isImportant) {
+function Note(content, isImportant, id) {
   function withToggledImportance() {
     return {
       ...this,
@@ -34,7 +28,7 @@ function Note(content, isImportant) {
   }
 
   return Object.freeze({
-    id: nextId(),
+    id,
     content,
     isImportant,
     asDumbObject,

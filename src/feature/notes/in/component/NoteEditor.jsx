@@ -1,7 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { add, updateNoteEditor } from "../redux/slice/noteSlice.js";
+import { thunks, actions } from "../redux/noteSlice.js";
 import NoteEditorModel from "../domain/noteEditor.js";
 import Note from "../domain/note.js";
+import { useState } from "react";
+import NoteEditorStatus from "../../../../common/domain/noteEditorStatus.js";
 
 function NoteEditor() {
   // shorthand for store.dispatch({ type: ..., payload: ... })
@@ -9,12 +11,23 @@ function NoteEditor() {
   // https://redux.js.org/usage/deriving-data-selectors
   // Selectors simply retrieve the data from the Redux store
   const noteEditor = useSelector((state) => state.notesSlice.noteEditor);
+  const [status, setStatus] = useState(NoteEditorStatus.IDLE);
+
+  const canAdd = status === NoteEditorStatus.IDLE;
 
   function addNote(content) {
-    if (content.trim()) {
-      const note = Note(content, false);
-      dispatch(add(note.asDumbObject()));
-      dispatch(updateNoteEditor(NoteEditorModel.newEditor().asDumbObject()));
+    const contentIsNotBlank = Boolean(content.trim());
+    if (canAdd && contentIsNotBlank) {
+      try {
+        const note = Note(content, false).asDumbObject();
+        setStatus(NoteEditorStatus.SAVING);
+        dispatch(thunks.addNote(note));
+        dispatch(
+          actions.updateNoteEditor(NoteEditorModel.newEditor().asDumbObject()),
+        );
+      } finally {
+        setStatus(NoteEditorStatus.IDLE);
+      }
     }
   }
 
@@ -33,7 +46,7 @@ function NoteEditor() {
   function handleOnChange(event) {
     const textAreaContent = event.target.value;
     const newNoteEditor = NoteEditorModel(textAreaContent);
-    dispatch(updateNoteEditor(newNoteEditor.asDumbObject()));
+    dispatch(actions.updateNoteEditor(newNoteEditor.asDumbObject()));
   }
 
   return (

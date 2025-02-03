@@ -2,7 +2,7 @@
 // "container component"
 import NoteList from "./NoteList.jsx";
 import NoteEditor from "./NoteEditor.jsx";
-import "../assets/style/style.css";
+import "../ui/assets/style/style.css";
 import NoteControl from "./NoteControl.jsx";
 
 function NotesContainer() {

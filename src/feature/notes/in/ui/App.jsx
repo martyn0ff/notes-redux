@@ -1,4 +1,4 @@
-import NotesContainer from "./component/NotesContainer.jsx";
+import NotesContainer from "../component/NotesContainer.jsx";
 
 function App() {
   return (

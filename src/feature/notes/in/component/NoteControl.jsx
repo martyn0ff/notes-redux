@@ -1,11 +1,11 @@
 import { useDispatch } from "react-redux";
-import { toggleImportantOnly } from "../redux/slice/noteSlice";
+import { actions } from "../redux/noteSlice.js";
 
 function NoteControl() {
   const dispatch = useDispatch();
 
   function handleOnChange() {
-    dispatch(toggleImportantOnly());
+    dispatch(actions.toggleImportantOnly());
   }
 
   return (
