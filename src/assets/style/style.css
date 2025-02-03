@@ -1,0 +1,23 @@
+.note-important {
+  color: red;
+}
+
+.notes-container {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn {
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.notes-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 10px
+}
